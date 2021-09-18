@@ -2,30 +2,45 @@
 
 @section('content')
 
-    <div class="m-auto w-5/6 py-10 pt-15 text-center">
+    <div class="w-5/6 p-8">
 
-        {{-- @foreach ($trees as $tree)
-            <p>{{ $tree->name }}</p>
 
-                <form action="/tree/{{ $tree->id }}" method="POST">
+        <div class="form-group {{ $errors->has('parent_id') ? 'has-error' : '' }}">
+            <label>Dodaj:
+                <a href="tree/create">
+                    <i class="bi bi-plus-circle-fill" style="color: rgb(5, 170, 32)"></i>
+                </a>
+            </label>
+            <ul id="tree1">
+               @foreach($tree as $tr)
+               <li>
+                <form action="/tree/{{ $tr->id }}" method="POST">
+                    <label for="parent_id"> {{ $tr->name }}
                     @csrf
                     @method('delete')
-                    <button class="bg-red-500 hover:bg-red-400 text-white font-bold py-1 px-1 border-b-4 border-gray-700 hover:border-gray-500 rounded">
-                        X
-                      </button>
-                    </button>
+                    <i class="bi bi-trash" style="color: rgb(173, 0, 0)"></i>
                 </form>
-                <a href="tree/{{ $tree->id }}/edit">
-                    <button class="bg-red-500 hover:bg-red-400 text-white font-bold py-1 px-1 border-b-4 border-gray-700 hover:border-gray-500 rounded">
-                    E
-                  </button>
+                <a href="/tree/{{ $tr->id }}/edit">
+                    <i class="bi bi-pencil" style="color: rgb(5, 170, 32)"></i>
                 </a>
+            </label>
 
-        @endforeach --}}
+               </li>
+               @if(count($tr->childs))
+               @include('trees.manageCheckbox',['childs' => $tr->childs])
+               @endif
+               @endforeach
+            </ul>
+            @if ($errors->has('parent_id'))
+                <span class="text-red" role="alert">
+                    <strong>{{ $errors->first('parent_id') }}</strong>
+                </span>
+            @endif
+         </div>
+      </form>
+   </div>
 
-    {{-- TODO: Add visualization tree structure --}}
-
-
-    </div>
+</div>
+<script src="{{ asset('js/tree.js') }}"></script>
 
 @endsection

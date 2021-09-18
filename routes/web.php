@@ -14,4 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// tree
 Route::resource('/tree', TreeController::class);
+

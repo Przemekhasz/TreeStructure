@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+ini_set('memory_limit', '1024M');
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Tree;
@@ -16,35 +18,15 @@ class TreeController extends Controller
      */
     public function index()
     {
+
         $trees  = Tree::all();
         $tree = Tree::where('parent_id', '=', 0)->get();
         $alltree = Tree::pluck('name','id')->all();
-
-        function buildTree(Collection $elements, $alltree = 0) {
-            $branch = collect();
-
-            foreach ($elements as $element) {
-                if ($element['parent_id'] == $alltree) {
-                    $children = buildTree($elements, $element['id']);
-                    if ($children) {
-                        $element['children'] = $children;
-                    }
-                    $branch[] = $element;
-                }
-            }
-
-            return $branch;
-        }
-
-        $build = buildTree($trees);
-
-
 
         return view('trees.index', [
             'tree' => $tree,
             'trees' => $trees,
             'alltree' => $alltree,
-            'build' => $build,
         ]);
     }
 
@@ -79,7 +61,7 @@ class TreeController extends Controller
             'parent_id' => $request->input('parent_id'),
             'name' => $request->input('name')
         ]);
-        // dd($tree);
+
         return redirect('/tree');
     }
 
