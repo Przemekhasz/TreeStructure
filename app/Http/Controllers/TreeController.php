@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-ini_set('memory_limit', '1024M');
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Tree;
@@ -18,7 +16,6 @@ class TreeController extends Controller
      */
     public function index()
     {
-
         $trees  = Tree::all();
         $tree = Tree::where('parent_id', '=', 0)->get();
         $alltree = Tree::pluck('name','id')->all();
@@ -84,12 +81,13 @@ class TreeController extends Controller
      */
     public function edit($id)
     {
-        $find_id = Tree::find($id)->first();
+        $find_id = Tree::find($id);
         $trees = Tree::all();
+        $tree = Tree::where('parent_id', '=', 0)->get();
 
         return view('trees.edit', [
             'trees' => $trees,
-        ])->with('find_id', $find_id);
+        ])->with('tree', $tree);
     }
 
     /**
