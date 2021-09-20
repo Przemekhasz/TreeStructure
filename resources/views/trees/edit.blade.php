@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="m-auto w-5/6 py-2 pt-2 text-center">
-        <form class="m-auto w-1/6 py-24 pt-15 text-center" method="POST" action="/tree/{{ $tree->parent_id }}" enctype="multipart/form-data">
+        <form class="m-auto w-1/6 py-24 pt-15 text-center" method="POST" action="/tree/{{ $find_id->id }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="flex items-center border-b border-teal-500 py-2">
@@ -11,8 +11,9 @@
               class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
               type="text"
               name="name"
-              value="{{ $tree->name }}">
-               
+              value="{{ $find_id->name }}"
+              required>
+
 
             </div>
             <br />
@@ -26,10 +27,10 @@
             <br />
                 <select
                 class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                name="name"
+                name="parent_id"
                 >
                 @foreach ($trees as $tree)
-                    <option>{{ $tree->id }} {{ $tree->name }}</option>
+                    <option>{{ $tree->id }}</option>
                 @endforeach
                 </select>
                 <br />

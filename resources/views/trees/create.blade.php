@@ -11,7 +11,8 @@
               class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
               type="text"
               name="name"
-              placeholder="Name">
+              placeholder="Name"
+              required>
 
             </div>
 

@@ -83,11 +83,10 @@ class TreeController extends Controller
     {
         $find_id = Tree::find($id);
         $trees = Tree::all();
-        $tree = Tree::where('parent_id', '=', 0)->get();
 
         return view('trees.edit', [
             'trees' => $trees,
-        ])->with('tree', $tree);
+        ])->with('find_id', $find_id);
     }
 
     /**

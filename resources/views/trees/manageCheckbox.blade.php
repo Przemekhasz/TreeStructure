@@ -1,9 +1,10 @@
 <ul>
     @foreach($childs as $child)
     <li>
+        <form action="/tree/{{ $child->id }}" method="POST">
         <label for="vehicle1"> {{ $child->name }}
             @csrf
-                    @method('delete')
+            @method('delete')
                     <a href="/tree/{{ $child->id }}">
                         <i class="bi bi-trash" style="color: rgb(173, 0, 0)"></i>
                     </a>
