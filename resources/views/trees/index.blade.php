@@ -11,7 +11,7 @@
                 </a>
             </label>
 
-                <ul id="tree1">
+                <ul id="tree1" class="tree">
                     @foreach($tree as $tr)
                          <li>
                              <form action="/tree/{{ $tr->id }}" method="POST">
