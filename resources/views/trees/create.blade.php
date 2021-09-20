@@ -4,17 +4,18 @@
 
     <div class="m-auto w-5/6 py-2 pt-2 text-center">
 
-        <form class="m-auto w-1/6 py-24 pt-15 text-center" method="POST" action="/tree" enctype="multipart/form-data">
+        <form class="m-auto w-1/6 py-24 pt-15 text-center" id="createForm" method="POST" action="/tree" enctype="multipart/form-data">
             @csrf
             <div class="flex items-center border-b border-teal-500 py-2">
               <input
               class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+              id="create"
               type="text"
               name="name"
               placeholder="Name">
 
             </div>
-
+            <div class="message"></div>
             <br />
 
             @error('name')
@@ -41,6 +42,7 @@
                 @enderror
 
                 <br />
+
             <button
                 type="submit"
                 class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">
@@ -50,5 +52,5 @@
 
 
     </div>
-
+    <script src="{{ asset('js/validate.js') }}"></script>
 @endsection

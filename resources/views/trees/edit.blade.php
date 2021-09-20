@@ -4,17 +4,18 @@
 
     <div class="m-auto w-5/6 py-2 pt-2 text-center">
 
-        <form class="m-auto w-1/6 py-24 pt-15 text-center" method="POST" action="/tree/{{ $find_id->id }}" enctype="multipart/form-data">
+        <form class="m-auto w-1/6 py-24 pt-15 text-center" id="editForm" method="POST" action="/tree/{{ $find_id->id }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
             <div class="flex items-center border-b border-teal-500 py-2">
               <input
               class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+              id="edit"
               type="text"
               name="name"
               value="{{ $find_id->name }}"
-              required>
+              >
             </div>
 
             <br />
@@ -56,5 +57,5 @@
         </form>
 
     </div>
-
+    <script src="{{ asset('js/validate.js') }}"></script>
 @endsection

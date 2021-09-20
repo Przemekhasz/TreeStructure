@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Tree;
 use Illuminate\Database\Eloquent\Collection;
+use App\Http\Requests\TreeRequest;
 
 class TreeController extends Controller
 {
@@ -44,19 +45,17 @@ class TreeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \App\Http\Requests\TreeRequest  $request
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TreeRequest $request)
     {
-        $request->validate([
-            'parent_id' => 'required',
-            'name'  => 'required|min:3|max:255'
-        ]);
+        $validated = $request->validated();
 
         $tree = Tree::create([
-            'parent_id' => $request->input('parent_id'),
-            'name' => $request->input('name')
+            'parent_id' => $validated = $request->input('parent_id'),
+            'name' => $validated = $request->input('name')
         ]);
 
         return redirect('/tree');
@@ -92,16 +91,19 @@ class TreeController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  \App\Http\Requests\TreeRequest  $request
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TreeRequest $request, $id)
     {
+        $validated = $request->validated();
+
         $trees = Tree::where('id', $id)
             ->update([
-                'parent_id' => $request->input('parent_id'),
-                'name' => $request->input('name')
+                'parent_id' => $validated = $request->input('parent_id'),
+                'name' => $validated = $request->input('name')
             ]);
 
         return redirect('/tree');

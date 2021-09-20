@@ -3,7 +3,7 @@
     <li>
 
         <form action="/tree/{{ $child->id }}" method="POST">
-        <label for="vehicle1"> {{ $child->name }}
+        <label for="name"> {{ $child->name }}
             @csrf
             @method('delete')
                 <a href="/tree/{{ $child->id }}">
