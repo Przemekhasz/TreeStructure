@@ -15,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // tree
-Route::resource('/tree', TreeController::class);
-
+Route::get('/tree', [TreeController::class, 'index'])->name('index');
+Route::post('/tree', [TreeController::class, 'store'])->name('store');
+Route::get('/tree/create', [TreeController::class, 'create'])->name('create');
+Route::put('/tree/{tree}', [TreeController::class, 'update'])->name('update');
+Route::delete('/tree/{tree}', [TreeController::class, 'destroy'])->name('destroy');
+Route::get('tree/{tree}/edit', [TreeController::class, 'edit'])->name('edit');
