@@ -32,9 +32,8 @@
                              @include('trees.manageCheckbox',['childs' => $tr->childs])
                          @endif
                     @endforeach
-                 </ul>
+                </ul>
         </div>
-      </form>
    </div>
 </div>
 <script src="{{ asset('js/tree.js') }}"></script>
