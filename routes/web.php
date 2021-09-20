@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::redirect('/', '/tree');
+
 // tree
 Route::get('/tree', [TreeController::class, 'index'])->name('index');
 Route::post('/tree', [TreeController::class, 'store'])->name('store');
