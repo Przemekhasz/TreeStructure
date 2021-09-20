@@ -6,22 +6,22 @@ const msg = createForm.querySelector(".message");
 
 let errors = [];
 
-if (create.value.length < 3) {
-    errors.push("To short");
-}
+// create validate
+create.value.length < 3
+    ? errors.push("The name must be at least 3 characters.")
+    : "";
+create.value.length > 25
+    ? errors.push(`The name must not be greater than 25 characters.`)
+    : "";
 
-if (!errors.length) {
-    createForm.submit();
-} else {
-    ("");
-}
+!errors.length ? createForm.submit() : "";
 
-if (edit.value.length < 3) {
-    errors.push("To short");
-}
+// edit validate
+edit.value.length < 3
+    ? errors.push("The name must be at least 3 characters.")
+    : "";
+edit.value.length > 25
+    ? errors.push("The name must not be greater than 25 characters.")
+    : "";
 
-if (!errors.length) {
-    createForm.submit();
-} else {
-    ("");
-}
+!errors.length ? createForm.submit() : "";

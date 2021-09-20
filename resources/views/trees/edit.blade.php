@@ -17,7 +17,7 @@
               value="{{ $find_id->name }}"
               >
             </div>
-
+            <div class="form-message"></div>
             <br />
 
             @error('name')
