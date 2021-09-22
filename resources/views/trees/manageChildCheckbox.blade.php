@@ -1,5 +1,5 @@
 <ul>
-    @foreach($childs as $child)
+    @foreach($childs->sortKeysDesc() as $child)
         <li>
             <form action="/tree/{{ $child->id }}" method="POST">
                 <label for="name"> {{ $child->name }}
@@ -14,9 +14,10 @@
                     </a>
                 </label>
 
-
         @if(count($child->childs))
-                @include('trees.manageChildCheckbox',['childs' => $child->childs])
+                @include('trees.manageChildCheckbox',[
+                    'childs' => $child->childs,
+                ])
         @endif
         </li>
     @endforeach

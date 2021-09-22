@@ -1,9 +1,9 @@
 <ul>
-    @foreach($childs as $child)
+    @foreach($childs->sortKeysDesc() as $child)
     <li>
 
         <form action="/tree/{{ $child->id }}" method="POST">
-        <label for="name"> {{ $child->name }}
+                    <label for="name"> {{$child->name }}
             @csrf
             @method('delete')
                 <a href="/tree/{{ $child->id }}">
@@ -16,7 +16,9 @@
         </label>
 
        @if(count($child->childs))
-            @include('trees.manageChildCheckbox',['childs' => $child->childs])
+            @include('trees.manageChildCheckbox',[
+                'childs' => $child->childs,
+            ])
        @endif
 
     </li>
