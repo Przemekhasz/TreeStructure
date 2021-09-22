@@ -1,5 +1,5 @@
 <ul>
-    @foreach($childs->sortBy('name') as $child)
+    @foreach(collect($childs)->sortBy('name') as $child)
     <li>
 
         <form action="/tree/{{ $child->id }}" method="POST">

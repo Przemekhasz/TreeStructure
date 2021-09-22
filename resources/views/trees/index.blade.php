@@ -13,7 +13,7 @@
 
                 <ul id="tree1" class="tree">
 
-                    @foreach($tree as $tr)
+                    @foreach(collect($tree)->sortBy('name') as $tr)
                          <li>
                              <form action="/tree/{{ $tr->id }}" method="POST">
                                 <label for="parent_id"> {{ $tr->name }}
