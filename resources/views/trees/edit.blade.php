@@ -31,20 +31,14 @@
             <select
                 class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                 name="parent_id">
-
-                @foreach ($trees as $tree)
-                    <option>{{ $tree->id }}</option>
+                {{-- TODO: Add old value to option! --}}
+                @foreach ($trees as $id => $value)
+                    <option value="{{ $value->id }}">{{ $value->name }}</option>
                 @endforeach
 
             </select>
 
                 <br />
-
-                @error('parent_id')
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-5 py-3 rounded relative" role="alert">
-                        <span class="block sm:inline">{{ $message }}</span>
-                    </div>
-                @enderror
 
                 <br />
 
@@ -55,6 +49,34 @@
             </button>
 
         </form>
+    <div class="flex justify-center">
+        <ul id="tree1" class="tree">
+            @foreach(collect($tree)->sortBy('name') as $tr)
+                 <li>
+                     <form action="/tree/{{ $tr->id }}" method="POST">
+                        <label for="parent_id"> {{ $tr->name }}
+
+                         @csrf
+                         @method('delete')
+                         <a href="/tree/{{ $tr->id }}">
+                             <i class="bi bi-trash" style="color: rgb(173, 0, 0)"></i>
+                         </a>
+                     </form>
+                     <a href="/tree/{{ $tr->id }}/edit">
+                         <i class="bi bi-pencil" style="color: rgb(5, 170, 32)"></i>
+                     </a>
+                     </label>
+                 </li>
+
+                 @if(count($tr->childs))
+                     @include('trees.manageCheckbox',[
+                         'childs' => $tr->childs,
+                    ])
+                 @endif
+            @endforeach
+        </ul>
+    </div>
+</div>
 
     </div>
     <script src="{{ asset('js/validate.js') }}"></script>

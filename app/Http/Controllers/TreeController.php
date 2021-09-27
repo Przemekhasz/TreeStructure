@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Tree;
 use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\TreeRequest;
-
+use Exception;
+use Illuminate\Http\JsonResponse;
 class TreeController extends Controller
 {
     /**
@@ -59,7 +60,7 @@ class TreeController extends Controller
             'name' => $validated = $request->input('name')
         ]);
 
-        return redirect('/tree');
+        return redirect('/tree')->with('alert', 'Dodano!');
     }
 
     /**
@@ -81,11 +82,15 @@ class TreeController extends Controller
      */
     public function edit($id)
     {
-        $find_id = Tree::find($id);
+        // TODO add query to old edited parent name
+        $find_id = Tree::findOrFail($id);
+        $tree = Tree::where('parent_id', '=', 0)->get();
+
         $trees = Tree::all();
 
         return view('trees.edit', [
             'trees' => $trees,
+            'tree' => $tree,
         ])->with('find_id', $find_id);
     }
 
@@ -107,7 +112,7 @@ class TreeController extends Controller
                 'name' => $validated = $request->input('name')
             ]);
 
-        return redirect('/tree');
+        return redirect('/tree')->with('alert', 'Zaktualizowano!');
     }
 
     /**
@@ -118,8 +123,23 @@ class TreeController extends Controller
      */
     public function destroy(Tree $tree)
     {
-        $tree->delete();
+        if ($tree->id == 1) {
+            return view('warnings.warning', [
+                'error' => 'Nie można usunąć tego elementu'
+            ]);
+        }
+        // TODO add deleting confirmed
+        if (count($tree->childs) > 0) {
+            return view('warnings.warning', [
+                'error' => 'Nie można usunąć tego elementu ponieważ znajdują się w nim inne elementy'
+            ]);
+        }
 
-        return redirect('/tree');
+        $tree->delete();
+        // TODO reapir comunicate ajax confirmed
+        return redirect('/tree')->with('alert', 'Usunięto!');
+        // return response()->json([
+        //     'success' => 'Pomyślnie usunięto'
+        // ]);
     }
 }

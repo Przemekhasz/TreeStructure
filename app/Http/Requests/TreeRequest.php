@@ -25,7 +25,7 @@ class TreeRequest extends FormRequest
     {
         return [
             'parent_id' => 'required',
-            'name'  => 'required|min:3|max:25'
+            'name'  => 'required|min:1|max:25'
         ];
     }
 }

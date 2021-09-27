@@ -2,12 +2,12 @@
     @foreach(collect($childs)->sortBy('name') as $child)
     <li>
 
-        <form action="/tree/{{ $child->id }}" method="POST">
+        <form id="event" action="/tree/{{ $child->id }}" method="POST">
                     <label for="name"> {{$child->name }}
             @csrf
             @method('delete')
                 <a href="/tree/{{ $child->id }}">
-                    <i class="bi bi-trash" style="color: rgb(173, 0, 0)"></i>
+                    <i class="delete bi bi-trash" style="color: rgb(173, 0, 0)" data-id="{{ $child->id }}"></i>
                 </a>
         </form>
             <a href="/tree/{{ $child->id }}/edit">
