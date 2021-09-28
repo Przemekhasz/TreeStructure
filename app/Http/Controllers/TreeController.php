@@ -2,19 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Tree;
-use Illuminate\Database\Eloquent\Collection;
 use App\Http\Requests\TreeRequest;
-use Exception;
-use Illuminate\Http\JsonResponse;
 class TreeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -64,17 +58,6 @@ class TreeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -82,8 +65,15 @@ class TreeController extends Controller
      */
     public function edit($id)
     {
-        // TODO add query to old edited parent name
         $find_id = Tree::findOrFail($id);
+
+        // TODO Repair bug
+        $old = Tree::select("tree")
+            ->select("name")
+            ->where("id", "=", $find_id)
+            ->where("parent_id", "=", "id")
+            ->get();
+        dd($old);
         $tree = Tree::where('parent_id', '=', 0)->get();
 
         $trees = Tree::all();
@@ -128,18 +118,9 @@ class TreeController extends Controller
                 'error' => 'Nie można usunąć tego elementu'
             ]);
         }
-        // TODO add deleting confirmed
-        if (count($tree->childs) > 0) {
-            return view('warnings.warning', [
-                'error' => 'Nie można usunąć tego elementu ponieważ znajdują się w nim inne elementy'
-            ]);
-        }
 
         $tree->delete();
-        // TODO reapir comunicate ajax confirmed
+
         return redirect('/tree')->with('alert', 'Usunięto!');
-        // return response()->json([
-        //     'success' => 'Pomyślnie usunięto'
-        // ]);
     }
 }

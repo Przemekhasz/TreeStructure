@@ -42,28 +42,5 @@
         </div>
    </div>
 </div>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-    const alert = document.querySelector('.alert');
-    const alertChild = document.querySelector('.alertChild');
 
-    setTimeout(() => {
-        alert.removeChild(alertChild);
-    }, 5000);
-
-$('.delete').on('click', function (event) {
-    event.preventDefault();
-    const url = "/tree/" + $(this).data("id");
-    swal({
-        title: 'Na pewno?',
-        text: 'Jeśli usuniesz ten element nie będzie możliwości przywrócenia!',
-        icon: 'warning',
-        buttons: ["Anuluj", "Usuń!"],
-    }).then(function(value) {
-        if (value) {
-            window.location.href = url;
-        }
-    });
-});
-</script>
 @endsection
