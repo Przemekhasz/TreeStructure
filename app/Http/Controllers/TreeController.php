@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Tree;
 use App\Http\Requests\TreeRequest;
+use Exception;
+
 class TreeController extends Controller
 {
     /**
@@ -16,6 +18,7 @@ class TreeController extends Controller
         $trees  = Tree::all();
         $tree = Tree::where('parent_id', '=', 0)->get();
         $alltree = Tree::pluck('name','id')->all();
+
 
         return view('trees.index', [
             'tree' => $tree,
@@ -66,17 +69,22 @@ class TreeController extends Controller
     public function edit($id)
     {
         $find_id = Tree::findOrFail($id);
-
         // TODO Repair bug
-        $old = Tree::select("tree")
-            ->select("name")
-            ->where("id", "=", $find_id)
-            ->where("parent_id", "=", "id")
-            ->get();
-        dd($old);
+        // $old = Tree::select("tree a, tree b")
+        //     ->select("name")
+        //     ->where("id", "=", $find_id)
+        //     ->where("parent_id", "=", "id")
+        //     ->get();
+        // dd($old);
         $tree = Tree::where('parent_id', '=', 0)->get();
 
         $trees = Tree::all();
+
+        // foreach($trees as $child) {
+        //     if($child->id) {
+        //         dd("nie można");
+        //     }
+        // }
 
         return view('trees.edit', [
             'trees' => $trees,
