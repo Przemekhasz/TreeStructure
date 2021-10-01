@@ -19,7 +19,16 @@ class TreeController extends Controller
         $tree = Tree::where('parent_id', '=', 0)->get();
         $alltree = Tree::pluck('name','id')->all();
 
+        // $test = Tree::select("tree a, tree b")
+        //     ->select("a.id as a", "b.id as b")
+        //     ->where("a.parent_id", "=", "b.id")
+        //     ->get();
 
+
+        // $testt = Tree::select(DB::raw('
+        // SELECT A.name as aName, B.name as Bname, A.id as a, B.id as b FROM tree A, tree B WHERE A.parent_id = B.id
+        // '))->get();
+        // dd($testt);
         return view('trees.index', [
             'tree' => $tree,
             'trees' => $trees,
@@ -69,22 +78,10 @@ class TreeController extends Controller
     public function edit($id)
     {
         $find_id = Tree::findOrFail($id);
-        // TODO Repair bug
-        // $old = Tree::select("tree a, tree b")
-        //     ->select("name")
-        //     ->where("id", "=", $find_id)
-        //     ->where("parent_id", "=", "id")
-        //     ->get();
-        // dd($old);
+
         $tree = Tree::where('parent_id', '=', 0)->get();
 
         $trees = Tree::all();
-
-        // foreach($trees as $child) {
-        //     if($child->id) {
-        //         dd("nie można");
-        //     }
-        // }
 
         return view('trees.edit', [
             'trees' => $trees,
@@ -125,6 +122,11 @@ class TreeController extends Controller
             return view('warnings.warning', [
                 'error' => 'Nie można usunąć tego elementu'
             ]);
+        }
+
+        // if parent has childs, delete parent and childs
+        if (count($tree->childs) > 0) {
+            $tree->childs->each->delete();
         }
 
         $tree->delete();

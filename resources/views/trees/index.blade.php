@@ -27,7 +27,7 @@
             </label>
                 <ul id="tree1" class="tree">
 
-                    @foreach(collect($tree)->sortBy('name') as $tr)
+                    @foreach($tree as $tr)
                          <li>
                                 <label for="parent_id"> {{ $tr->name }}
                          </li>

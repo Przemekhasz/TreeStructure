@@ -47,7 +47,6 @@ crossorigin="anonymous"></script>
 <script src="https://npmcdn.com/js-alert/dist/jsalert.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="{{ asset('js/deleteConfirmed.js') }}"></script>
-<script src="{{ asset('js/editConfirmed.js') }}"></script>
 <script src="{{ asset('js/alert.js') }}"></script>
 </body>
 </html>
