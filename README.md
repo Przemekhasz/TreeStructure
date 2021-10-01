@@ -7,4 +7,4 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-<img src="https://cdn.discordapp.com/attachments/802578840273682474/889427784055816192/unknown.png">
+<img src="https://cdn.discordapp.com/attachments/802578840273682474/893491680253194280/unknown.png">
