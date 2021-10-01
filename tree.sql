@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 20 Wrz 2021, 10:01
+-- Czas generowania: 01 Paź 2021, 15:34
 -- Wersja serwera: 10.4.19-MariaDB
 -- Wersja PHP: 8.0.6
 
@@ -40,19 +40,19 @@ CREATE TABLE `tree` (
 --
 
 INSERT INTO `tree` (`id`, `parent_id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 0, 'zero', NULL, NULL),
-(2, 1, 'jeden1', NULL, '2021-09-20 05:43:51'),
-(3, 2, 'dwa', NULL, NULL),
-(4, 0, 'trzy', NULL, NULL),
-(5, 1, 'cztery', NULL, NULL),
-(6, 2, 'pięć', NULL, NULL),
-(7, 0, 'sześć', NULL, NULL),
-(8, 1, 'siedem', NULL, NULL),
-(9, 2, 'osiem', NULL, NULL),
-(10, 0, 'dziewięć', NULL, NULL),
-(12, 1, 'Test', '2021-09-20 05:40:01', '2021-09-20 05:40:01'),
-(13, 3, 'PHP', '2021-09-20 05:40:22', '2021-09-20 05:40:22'),
-(14, 1, 'nowa nazwa', '2021-09-20 05:53:22', '2021-09-20 05:53:22');
+(1, 0, 'Języki programowania', NULL, '2021-09-24 07:53:55'),
+(195, 1, 'Frontend', '2021-09-30 12:41:40', '2021-09-30 12:41:40'),
+(200, 1, 'Backend', '2021-09-30 12:42:20', '2021-09-30 12:42:20'),
+(204, 200, 'Java', '2021-09-30 12:42:57', '2021-10-01 11:34:30'),
+(206, 200, 'C#', '2021-09-30 12:43:18', '2021-09-30 12:43:18'),
+(207, 206, '.NET', '2021-09-30 12:43:26', '2021-09-30 12:43:26'),
+(209, 200, 'PHP', '2021-10-01 09:49:23', '2021-10-01 09:49:23'),
+(210, 209, 'Laravel', '2021-10-01 09:49:32', '2021-10-01 09:49:32'),
+(213, 195, 'JavaScript', '2021-10-01 11:33:48', '2021-10-01 11:33:48'),
+(214, 213, 'React', '2021-10-01 11:33:56', '2021-10-01 11:33:56'),
+(215, 213, 'Vue', '2021-10-01 11:34:03', '2021-10-01 11:34:09'),
+(216, 213, 'Angular', '2021-10-01 11:34:24', '2021-10-01 11:34:24'),
+(217, 204, 'Spring Boot', '2021-10-01 11:34:40', '2021-10-01 11:34:40');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -72,7 +72,7 @@ ALTER TABLE `tree`
 -- AUTO_INCREMENT dla tabeli `tree`
 --
 ALTER TABLE `tree`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

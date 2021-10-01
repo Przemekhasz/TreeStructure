@@ -15,7 +15,7 @@ class TreeController extends Controller
      */
     public function index()
     {
-        $trees  = Tree::all();
+        $trees = Tree::all();
         $tree = Tree::where('parent_id', '=', 0)->get();
         $alltree = Tree::pluck('name','id')->all();
 
