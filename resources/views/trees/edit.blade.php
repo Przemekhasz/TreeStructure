@@ -58,13 +58,34 @@
                  @if(count($tr->childs))
                      @include('trees.manageCheckbox',[
                          'childs' => $tr->childs,
-                    ])
+                         ])
                  @endif
-            @endforeach
-        </ul>
-    </div>
-</div>
-
+                 @endforeach
+                </ul>
+            </div>
+        </div>
+        
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        
     </div>
     <script src="{{ asset('js/validate.js') }}"></script>
 @endsection

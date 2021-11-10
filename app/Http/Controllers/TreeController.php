@@ -19,16 +19,6 @@ class TreeController extends Controller
         $tree = Tree::where('parent_id', '=', 0)->get();
         $alltree = Tree::pluck('name','id')->all();
 
-        // $test = Tree::select("tree a, tree b")
-        //     ->select("a.id as a", "b.id as b")
-        //     ->where("a.parent_id", "=", "b.id")
-        //     ->get();
-
-
-        // $testt = Tree::select(DB::raw('
-        // SELECT A.name as aName, B.name as Bname, A.id as a, B.id as b FROM tree A, tree B WHERE A.parent_id = B.id
-        // '))->get();
-        // dd($testt);
         return view('trees.index', [
             'tree' => $tree,
             'trees' => $trees,
