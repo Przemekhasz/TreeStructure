@@ -7,34 +7,48 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## To require node_modules
+## Installation
 
-```js
-npm update
+Clone the repository-
+
+```
+git clone https://github.com/Przemekhasz/TreeStructure.git
 ```
 
-## Make migration tables to database
+Then cd into the folder with this command-
 
-```php
-php artisan migrate:fresh
+```
+cd tree-structure
+```
+
+Then do a composer install
+
+```
+composer install
+```
+
+Then create a environment file using this command-
+
+```
+cp .env.example .env
+```
+
+Then edit `.env` file with appropriate credential for your database server. Just edit these parameter(`DB_DATABASE`).
+
+Then create a database named `trees` and then do a database migration using this command-
+
+```
+php artisan migrate
 ```
 
 ## Run server
 
-```php
+Run server using this command-
+
+```
 php artisan serve
 ```
 
-## Clear routing cache
-
-```php
-php artisan route:cache
-```
-
-## View routing lists
-
-```php
-php artisan route:list
-```
+Then go to `http://localhost:8000` from your browser and see the app.
 
 <img src="https://cdn.discordapp.com/attachments/802578840273682474/893491680253194280/unknown.png">
