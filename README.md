@@ -41,6 +41,8 @@ Then create a database named `trees` and then do a database migration using this
 php artisan migrate
 ```
 
+Import tree.sql in `phpmyadmin` with insertion data
+
 ## Run server
 
 Run server using this command-
